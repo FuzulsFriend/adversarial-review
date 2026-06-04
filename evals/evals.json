@@ -1,0 +1,19 @@
+{
+  "skill_name": "adversarial-review",
+  "evals": [
+    {
+      "id": 0,
+      "name": "flawed-mini-spec",
+      "prompt": "Review this feature spec and tell me if it's ready to build.\n\n--- SPEC: Order payment confirmation ---\n1. All order timestamps are stored in UTC in the `placed_at` column.\n2. A background scheduler runs hourly and, for each unpaid order, reads the user's LOCAL business-day cutoff directly from `placed_at` to decide whether to send a reminder.\n3. When Stripe sends a `payment_succeeded` webhook, we look up the order by id and set its status to `paid`.\n4. After marking paid, notify the user promptly.\n5. Reminders and receipts are emailed to the user's verified email address.\n(Signup allows phone-only accounts with no email.)\n--- END ---",
+      "expected_output": "A severity-ranked review that catches: the UTC-vs-local-time contradiction (steps 1 vs 2), the missing webhook idempotency/duplicate handling (step 3), the ambiguous 'promptly' (step 4), and the phone-only-vs-email assumption (step 5 / hard question). Ends with a binary NOT READY verdict.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "flawed-plan-step",
+      "prompt": "Here's a chunk of an implementation plan. Does it look good to proceed?\n\n--- PLAN ---\nStep 1: Generate the report and write it to /tmp/report.json.\nStep 2: Delete /tmp/report.json to keep the temp dir clean.\nStep 3: Read /tmp/report.json and email its summary to the admin.\nStep 4: Call cache.invalidateAll() to refresh everything.\nStep 5: While we're in here, also migrate the entire legacy `events_v1` table to the new schema.\n--- END ---",
+      "expected_output": "Catches: the use-after-delete ordering bug (steps 2 vs 3), the undefined cache.invalidateAll() (step 4, unbuildable as written), the scope-balloon legacy migration (step 5), and missing acceptance criteria. Ends with a binary NOT READY verdict.",
+      "files": []
+    }
+  ]
+}
