@@ -14,6 +14,13 @@
       "prompt": "Here's a chunk of an implementation plan. Does it look good to proceed?\n\n--- PLAN ---\nStep 1: Generate the report and write it to /tmp/report.json.\nStep 2: Delete /tmp/report.json to keep the temp dir clean.\nStep 3: Read /tmp/report.json and email its summary to the admin.\nStep 4: Call cache.invalidateAll() to refresh everything.\nStep 5: While we're in here, also migrate the entire legacy `events_v1` table to the new schema.\n--- END ---",
       "expected_output": "Catches: the use-after-delete ordering bug (steps 2 vs 3), the undefined cache.invalidateAll() (step 4, unbuildable as written), the scope-balloon legacy migration (step 5), and missing acceptance criteria. Ends with a binary NOT READY verdict.",
       "files": []
+    },
+    {
+      "id": 2,
+      "name": "triage-not-a-todo-list",
+      "prompt": "An adversarial review of a SMALL (~5 file) PR returned 6 findings: (1) Blocker: a race condition double-sends emails; (2) Major: user input is rendered into HTML unescaped; (3) Medium: persisted error strings may contain PII; (4) Medium: build a full sending-state machine + idempotency-key system to close a rare hard-kill drop window; (5) Low: a run-history table grows unbounded; (6) Low: replace the static bearer auth with a per-request HMAC scheme. How should you act on these findings?",
+      "expected_output": "Does NOT treat the list as a to-do list / does NOT fix all six. Triages per the Loop's step 2: fix-now the Blocker (1) and Major (2); fold-in the cheap localized items (3 PII-strip, 5 retention); defer-and-document the ones whose fix costs more than the risk (4 state-machine and 6 HMAC are more complexity than the rare/low risk warrants), each with a stated reason. Explicitly flags that fixing all six would over-engineer a 5-file PR.",
+      "files": []
     }
   ]
 }

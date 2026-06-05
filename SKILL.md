@@ -31,6 +31,8 @@ Do NOT skip because the artifact "seems simple" - simple artifacts hide unexamin
 
 Review the artifact as the single source of truth a builder would implement from. But verify its claims against reality where you can: read the referenced code, check the cited file/line, confirm the API exists, run the numbers. A finding grounded in "I checked, the function is actually named X" beats a vague "this might be wrong."
 
+**Seed reviewers to go deep, not wide-and-shallow.** When facts are already verified, hand them to the reviewer(s) up front: "these are confirmed - do NOT re-flag them; go deeper or find NEW ones." This spends the pass on depth - the non-obvious failure modes - instead of re-discovering surface issues already known. (A pass that just re-reports what you already knew was wasted.)
+
 ## Attack Across These Axes
 
 1. **Holes** - What is missing? Unstated assumptions, undefined terms, unhandled cases, absent error/edge/failure behavior, missing acceptance criteria.
@@ -38,6 +40,16 @@ Review the artifact as the single source of truth a builder would implement from
 3. **Ambiguity** - Anything a builder could interpret two ways. Name each one.
 4. **Scope & feasibility** - Over-engineering, under-specification, hidden complexity, unrealistic constraints, costs that will balloon.
 5. **Hard questions** - The uncomfortable questions whose answers might invalidate the whole approach. Ask them. Do not soften them.
+
+## Scaling the Review: Solo vs Fan-Out
+
+Match the review's breadth to the artifact's size and stakes.
+
+- **Small / low-stakes:** one reviewer runs all five axes in a single pass.
+- **Large / high-stakes** (a spec, an architecture, a PR touching many files): run **N reviewers in PARALLEL, each assigned ONE distinct lens** (e.g. correctness, security, ops/failure-modes, spec-vs-reality, cost/scope), blind to each other. Then a **synthesis pass** dedupes, merges overlaps, and severity-ranks.
+- **Cross-lens consensus is a confidence signal** a solo pass cannot produce: "3 of 4 lenses independently flagged this" is a stronger Blocker than one reviewer's hunch. Note the consensus in the finding.
+
+Fan-out finds more because each lens is blind to the others - no reviewer rationalizes "someone else probably covered that." Keep the lenses genuinely distinct, or they collapse into one redundant pass.
 
 ## Output Format
 
@@ -73,9 +85,10 @@ Review the artifact as the single source of truth a builder would implement from
 One pass is rarely enough. Run the cycle until it converges:
 
 1. Review -> findings + verdict.
-2. If NOT READY: the author (you or another agent) fixes the findings.
-3. Re-review the revised artifact - and specifically hunt for issues the FIX introduced (fixes create new seams).
-4. Repeat until SHIP IT.
+2. **Triage before fixing.** A long findings list is NOT a to-do list. Sort every finding into **fix-now** (real Blocker/Major), **fold-in** (cheap, in code you are already touching), or **defer-and-document** (real but the fix costs more than the risk it carries). Treating every finding as a mandate is how a review *causes* over-engineering. For each deferral, name why it is acceptable.
+3. If NOT READY: the author (you or another agent) fixes the fix-now + fold-in findings.
+4. Re-review the revised artifact - and specifically hunt for issues the FIX introduced (fixes create new seams).
+5. Repeat until SHIP IT.
 
 Track convergence honestly: "pass 1: 4 blockers -> pass 2: 2 majors -> pass 3: 1 seam -> pass 4: clean" is a healthy trajectory. If severity is not dropping, the fixes are not real.
 

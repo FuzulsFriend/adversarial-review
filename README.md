@@ -44,6 +44,10 @@ Then it hands you findings ordered by severity (**Blocker / Major / Minor**, eac
 
 And it will not say SHIP IT on the first pass unless the thing is genuinely airtight. Most first passes don't make it.
 
+## Scales with the stakes
+
+Small artifact? One pass, five axes. Big or high-stakes one - a spec, an architecture, a multi-file PR? Fan it out into **parallel single-lens reviewers** (correctness, security, ops, spec-vs-reality), each blind to the others, then synthesize. When three independent lenses flag the same thing, that's not a hunch anymore.
+
 ## Receipts
 
 Run head-to-head against a plain review on two deliberately-flawed artifacts:
@@ -80,6 +84,7 @@ Then just work. It fires on its own when you're about to sign off on something -
 
 - **Flattery is failure.** The artifact is the target, never the author.
 - **No manufactured filler.** A clean pass says so and ships it - it won't invent issues to look busy.
+- **A findings list is not a to-do list.** It triages - fix-now, fold-in, defer-and-document - so the review doesn't *cause* the over-engineering it's meant to catch.
 - **Fixes create new seams.** After a fix, it re-reviews and hunts exactly what the fix broke.
 - **Letter = spirit.** "It's basically fine" is not a verdict.
 
