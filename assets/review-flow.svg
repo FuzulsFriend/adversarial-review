@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 560" width="1280" height="560" role="img" aria-labelledby="t d">
+  <title id="t">How an adversarial review runs</title>
+  <desc id="d">An artifact is attacked across five axes, producing severity-ranked findings. Findings are triaged into fix-now, fold-in and defer. Fixes are re-reviewed for the seams they open. The verdict is NOT READY by default, SHIP IT AS IS only when nothing is left worth changing.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0E0E10"/></marker>
+  </defs>
+  <style>
+    .sans{font-family:Assistant,'Segoe UI',Helvetica,Arial,sans-serif;font-weight:800}
+    .mono{font-family:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace}
+    .box{fill:#EAE4D8;stroke:#0E0E10;stroke-width:4}
+    .ln{fill:none;stroke:#0E0E10;stroke-width:3;marker-end:url(#a)}
+    .dash{fill:none;stroke:#085B8F;stroke-width:3;stroke-dasharray:10 7;marker-end:url(#a)}
+  </style>
+  <rect width="1280" height="560" fill="#EAE4D8"/>
+  <rect width="1280" height="10" fill="#0E0E10"/>
+  <rect y="550" width="1280" height="10" fill="#0E0E10"/>
+
+  <!-- row 1 -->
+  <rect class="box" x="40" y="50" width="220" height="90"/>
+  <text class="sans" x="60" y="88" font-size="24" fill="#0E0E10">ARTIFACT</text>
+  <text class="mono" x="60" y="116" font-size="16" fill="#57534B">spec, plan, PR, code</text>
+  <rect x="340" y="50" width="330" height="90" fill="#0B71B2" stroke="#0E0E10" stroke-width="4"/>
+  <text class="sans" x="360" y="88" font-size="24" fill="#EAE4D8">ATTACK</text>
+  <text class="mono" x="360" y="116" font-size="16" fill="#EAE4D8">assume it is broken</text>
+  <rect class="box" x="750" y="50" width="220" height="90"/>
+  <text class="sans" x="770" y="88" font-size="24" fill="#0E0E10">FINDINGS</text>
+  <text class="mono" x="770" y="116" font-size="15" fill="#57534B">Blocker, Major, Minor</text>
+  <rect x="1040" y="50" width="200" height="90" fill="#0E0E10"/>
+  <text class="sans" x="1060" y="88" font-size="24" fill="#EAE4D8">VERDICT</text>
+  <text class="mono" x="1060" y="116" font-size="16" fill="#EAE4D8">NOT READY | SHIP IT</text>
+  <path class="ln" d="M260 95 H338"/>
+  <path class="ln" d="M670 95 H748"/>
+  <path class="ln" d="M970 95 H1038"/>
+
+  <!-- five axes -->
+  <text class="mono" x="40" y="190" font-size="18" fill="#085B8F">FIVE AXES, ALL SWEPT BEFORE THE VERDICT</text>
+  <g>
+    <rect class="box" x="40" y="205" width="216" height="80"/>
+    <text class="sans" x="56" y="240" font-size="22" fill="#0E0E10">HOLES</text>
+    <text class="mono" x="56" y="266" font-size="15" fill="#57534B">what is missing</text>
+    <rect class="box" x="281" y="205" width="216" height="80"/>
+    <text class="sans" x="297" y="240" font-size="22" fill="#0E0E10">LOGIC BUGS</text>
+    <text class="mono" x="297" y="266" font-size="15" fill="#57534B">cannot work as written</text>
+    <rect class="box" x="522" y="205" width="216" height="80"/>
+    <text class="sans" x="538" y="240" font-size="22" fill="#0E0E10">AMBIGUITY</text>
+    <text class="mono" x="538" y="266" font-size="15" fill="#57534B">two readings</text>
+    <rect class="box" x="763" y="205" width="216" height="80"/>
+    <text class="sans" x="779" y="240" font-size="22" fill="#0E0E10">SCOPE</text>
+    <text class="mono" x="779" y="266" font-size="15" fill="#57534B">cost, feasibility</text>
+    <rect x="1004" y="205" width="236" height="80" fill="#0B71B2" stroke="#0E0E10" stroke-width="4"/>
+    <text class="sans" x="1020" y="240" font-size="22" fill="#EAE4D8">HARD QUESTIONS</text>
+    <text class="mono" x="1020" y="266" font-size="15" fill="#EAE4D8">might sink the approach</text>
+  </g>
+  <path class="ln" d="M505 142 V203"/>
+
+  <!-- loop -->
+  <text class="mono" x="40" y="352" font-size="18" fill="#085B8F">THEN THE LOOP, WITH A TRIAGE STEP SO THE REVIEW DOES NOT CAUSE OVER-ENGINEERING</text>
+  <rect class="box" x="40" y="375" width="340" height="110"/>
+  <text class="sans" x="60" y="412" font-size="24" fill="#0E0E10">TRIAGE</text>
+  <text class="mono" x="60" y="440" font-size="16" fill="#57534B">fix-now | fold-in |</text>
+  <text class="mono" x="60" y="462" font-size="16" fill="#57534B">defer, with a reason</text>
+  <rect class="box" x="460" y="375" width="220" height="110"/>
+  <text class="sans" x="480" y="412" font-size="24" fill="#0E0E10">FIX</text>
+  <text class="mono" x="480" y="440" font-size="16" fill="#57534B">author, a separate</text>
+  <text class="mono" x="480" y="462" font-size="16" fill="#57534B">step from review</text>
+  <rect class="box" x="760" y="375" width="300" height="110"/>
+  <text class="sans" x="780" y="412" font-size="24" fill="#0E0E10">RE-REVIEW</text>
+  <text class="mono" x="780" y="440" font-size="16" fill="#57534B">hunt what the fix</text>
+  <text class="mono" x="780" y="462" font-size="16" fill="#57534B">broke. Fixes open seams.</text>
+  <path class="ln" d="M380 430 H458"/>
+  <path class="ln" d="M680 430 H758"/>
+  <path class="ln" d="M1060 430 H1088"/>
+  <text class="mono" x="1096" y="414" font-size="14" fill="#085B8F">repeat until:</text>
+  <text class="mono" x="1096" y="440" font-size="14" fill="#085B8F">no Blocker, no Major</text>
+  <text class="mono" x="1096" y="462" font-size="14" fill="#085B8F">no open question</text>
+</svg>

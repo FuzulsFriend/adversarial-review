@@ -23,7 +23,7 @@ Do NOT skip because the artifact "seems simple" - simple artifacts hide unexamin
 
 ## The Iron Rule
 
-**Never return SHIP IT on the first pass unless the artifact is genuinely airtight.** Most first passes end in NOT READY. If you found nothing, you did not look hard enough - look again before concluding.
+**Never return SHIP IT on the first pass unless the artifact is genuinely airtight.** Most first passes end in NOT READY. If you found nothing, look again for missed failure modes; do not invent findings to fill a quota.
 
 **Violating the letter of this rule is violating its spirit.** "It's basically fine" is not a verdict.
 
@@ -59,6 +59,7 @@ Fan-out finds more because each lens is blind to the others - no reviewer ration
 - **Severity:** Blocker | Major | Minor
 - **What:** the problem in one sentence
 - **Where:** the section / file / line it lives in
+- **Proof:** the failing test, or the file:line you read. Without proof it is a Hard Question, not a Blocker or Major.
 - **Why it matters:** the concrete downstream consequence
 - **Fix:** a specific, actionable correction (NOT "consider improving")
 
@@ -90,6 +91,8 @@ One pass is rarely enough. Run the cycle until it converges:
 4. Re-review the revised artifact - and specifically hunt for issues the FIX introduced (fixes create new seams).
 5. Repeat until SHIP IT.
 
+**Inside a lead-loop program**, its exit rule replaces this loop: stop when no proven Blocker or Major remains, after at most 2 attacker rounds. Hard questions go to the decisions list, not into the verdict. Refuters only for Blockers and Majors in code reviews. Verdict words: READY / NOT READY.
+
 Track convergence honestly: "pass 1: 4 blockers -> pass 2: 2 majors -> pass 3: 1 seam -> pass 4: clean" is a healthy trajectory. If severity is not dropping, the fixes are not real.
 
 ## Rules (non-negotiable)
@@ -98,23 +101,4 @@ Track convergence honestly: "pass 1: 4 blockers -> pass 2: 2 majors -> pass 3: 1
 - Do NOT invent praise to balance criticism. No "great work, but...".
 - Do NOT manufacture filler findings to look thorough. If a pass is genuinely clean, say so and give SHIP IT.
 - Tempted to say "looks good"? Look harder first - find the holes, then decide.
-
-## Red Flags - you are rationalizing, STOP
-
-| Thought | Reality |
-|---------|---------|
-| "This is too simple to need review" | Simple = unexamined assumptions. Review it. |
-| "Looks good to me" | You have not attacked it yet. Run the axes. |
-| "I'll just approve to keep momentum" | A downstream blocker costs more than a review pass. |
-| "I don't want to be harsh" | Flattery is failure. The artifact is the target, not the author. |
-| "SHIP IT on the first pass" | Almost never true. Look again. |
-| "I found a few things, good enough" | Order by severity and finish the sweep before the verdict. |
-| "Re-review is overkill after a fix" | Fixes introduce new seams. Re-review hunts exactly those. |
-
-## Common Mistakes
-
-- **Stopping at the first issue.** Sweep all five axes before concluding.
-- **Vague fixes.** "Add error handling" is not a fix. Name the case and the correction.
-- **Reviewing only what is written, never reality.** Verify cited code/APIs/numbers.
-- **Softening hard questions.** The ones that might invalidate the approach are the point.
-- **Declaring victory early.** Severity must actually reach zero, not "close enough".
+- Sweep all five axes before the verdict; do not stop at the first issue.
