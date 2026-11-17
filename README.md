@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Adversarial Review: assume it is broken until proven otherwise" width="100%">
+  <img src="assets/banner.png" alt="Adversarial Review: assume it is broken until proven otherwise" width="100%">
 </p>
 
 > **A Claude Code skill that reviews your work like it is trying to get it killed in code review. Severity-ranked findings, the hard questions, and a binary verdict. NOT READY is the default.**
@@ -28,7 +28,7 @@ You ask "does this look good?" and get "great work! a few small suggestions". Th
 ## How it works
 
 <p align="center">
-  <img src="assets/review-flow.svg" alt="Flow: artifact, attack across five axes, findings, verdict, then triage, fix and re-review" width="100%">
+  <img src="assets/review-flow.png" alt="Flow: artifact, attack across five axes, findings, verdict, then triage, fix and re-review" width="100%">
 </p>
 
 It attacks across five axes and sweeps all five before it gives a verdict:

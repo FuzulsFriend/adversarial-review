@@ -27,7 +27,7 @@
   <text class="mono" x="770" y="116" font-size="15" fill="#57534B">Blocker, Major, Minor</text>
   <rect x="1040" y="50" width="200" height="90" fill="#0E0E10"/>
   <text class="sans" x="1060" y="88" font-size="24" fill="#EAE4D8">VERDICT</text>
-  <text class="mono" x="1060" y="116" font-size="16" fill="#EAE4D8">NOT READY | SHIP IT</text>
+  <text class="mono" x="1060" y="116" font-size="14" fill="#EAE4D8">NOT READY | SHIP IT</text>
   <path class="ln" d="M260 95 H338"/>
   <path class="ln" d="M670 95 H748"/>
   <path class="ln" d="M970 95 H1038"/>
@@ -40,7 +40,7 @@
     <text class="mono" x="56" y="266" font-size="15" fill="#57534B">what is missing</text>
     <rect class="box" x="281" y="205" width="216" height="80"/>
     <text class="sans" x="297" y="240" font-size="22" fill="#0E0E10">LOGIC BUGS</text>
-    <text class="mono" x="297" y="266" font-size="15" fill="#57534B">cannot work as written</text>
+    <text class="mono" x="297" y="266" font-size="14" fill="#57534B">cannot work as written</text>
     <rect class="box" x="522" y="205" width="216" height="80"/>
     <text class="sans" x="538" y="240" font-size="22" fill="#0E0E10">AMBIGUITY</text>
     <text class="mono" x="538" y="266" font-size="15" fill="#57534B">two readings</text>
@@ -49,7 +49,7 @@
     <text class="mono" x="779" y="266" font-size="15" fill="#57534B">cost, feasibility</text>
     <rect x="1004" y="205" width="236" height="80" fill="#0B71B2" stroke="#0E0E10" stroke-width="4"/>
     <text class="sans" x="1020" y="240" font-size="22" fill="#EAE4D8">HARD QUESTIONS</text>
-    <text class="mono" x="1020" y="266" font-size="15" fill="#EAE4D8">might sink the approach</text>
+    <text class="mono" x="1020" y="266" font-size="14" fill="#EAE4D8">might sink the approach</text>
   </g>
   <path class="ln" d="M505 142 V203"/>
 
